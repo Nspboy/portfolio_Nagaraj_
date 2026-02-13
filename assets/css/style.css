@@ -39,6 +39,7 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
 }
 .site-header {
   position: sticky;
@@ -53,6 +54,7 @@ body {
   display: flex;
   align-items: center;
   gap: 2rem;
+  flex-wrap: nowrap;
 }
 .logo {
   display: inline-flex;
@@ -105,6 +107,37 @@ body {
 .btn-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+}
+
+/* Hamburger menu toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  margin-left: auto;
+  z-index: 60;
+}
+.menu-toggle .bar {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.menu-toggle.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 .hero {
@@ -987,9 +1020,44 @@ h1 span {
   .services-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Show hamburger, hide nav by default */
+  .menu-toggle {
+    display: flex;
+  }
   .nav {
-    gap: 16px;
-    font-size: 13px;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 6, 20, 0.97);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    z-index: 55;
+    padding: 2rem;
+  }
+  .nav.open {
+    display: flex;
+  }
+  .nav a {
+    font-size: 18px;
+    color: var(--text);
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .nav a:hover {
+    color: var(--accent3);
+  }
+  .nav .btn-cta {
+    margin-left: 0;
+    margin-top: 8px;
+    padding: 12px 28px;
+    font-size: 16px;
   }
 }
 
@@ -1130,21 +1198,10 @@ h1 span {
   .socials a {
     font-size: 13px;
   }
-  .nav {
-    gap: 12px;
-    font-size: 12px;
-  }
-  .nav a {
-    font-size: 12px;
-  }
   .logo {
     width: 40px;
     height: 40px;
     font-size: 14px;
-  }
-  .btn-cta {
-    padding: 8px 16px;
-    font-size: 12px;
   }
   .btn {
     padding: 10px 16px;
@@ -1372,23 +1429,10 @@ h1 span {
   .header-inner {
     gap: 0.5rem;
   }
-  .nav {
-    gap: 8px;
-    font-size: 11px;
-  }
-  .nav a {
-    font-size: 11px;
-    padding-bottom: 2px;
-  }
   .logo {
     width: 36px;
     height: 36px;
     font-size: 12px;
-    margin-right: 8px;
-  }
-  .btn-cta {
-    padding: 6px 12px;
-    font-size: 11px;
   }
   .site-header {
     padding: 0.6rem 0;
