@@ -1,4 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Mobile menu toggle
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      mainNav.classList.toggle("open");
+      document.body.style.overflow = mainNav.classList.contains("open")
+        ? "hidden"
+        : "";
+    });
+
+    // Close menu when a nav link is clicked
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("active");
+        mainNav.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+  }
+
   // Smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {
